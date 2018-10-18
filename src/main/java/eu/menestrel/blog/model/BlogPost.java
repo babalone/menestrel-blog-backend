@@ -1,0 +1,47 @@
+package eu.menestrel.blog.model;
+
+import java.util.Date;
+import lombok.Builder;
+import lombok.Data;
+
+import java.time.ZonedDateTime;
+import java.util.List;
+import lombok.NoArgsConstructor;
+
+/**
+ * Data object representing a blog post.
+ */
+@Data
+@Builder
+public class BlogPost {
+
+  /**
+   * Authors of the blog post.
+   */
+  private List<Author> author;
+
+  /**
+   * Time when the post was first created
+   */
+  private Date createdTime;
+
+  /**
+   * Time when the last change took place.
+   */
+  private Date updateTime;
+
+  /**
+   * A list of tags for the post.
+   */
+  private List<String> tags;
+
+  /**
+   * The title of the article.
+   */
+  private String title;
+
+  /**
+   * The content of the blog post.
+   */
+  private String content;
+}
