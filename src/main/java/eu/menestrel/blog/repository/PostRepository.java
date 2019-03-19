@@ -6,6 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PostRepository extends MongoRepository<BlogPost, String> {
   public BlogPost findByTitle(String id);
-  public BlogPost findByAuthor(Author author);
+  public BlogPost findByAuthors(Author author);
   public BlogPost findByTags(String tag);
 }

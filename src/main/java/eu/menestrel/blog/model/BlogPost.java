@@ -18,15 +18,15 @@ public class BlogPost {
   /**
    * Authors of the blog post.
    */
-  private List<Author> author;
+  private List<Author> authors;
 
   /**
-   * Time when the post was first created
+   * Time when the post was first created (UTC)
    */
   private Date createdTime;
 
   /**
-   * Time when the last change took place.
+   * Time when the last change took place (UTC)
    */
   private Date updateTime;
 

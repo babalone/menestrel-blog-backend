@@ -1,5 +1,6 @@
 package eu.menestrel.blog.model;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.util.Pair;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
  * Data representing an author.
  */
 @Data
+@Builder
 public class Author {
 
   /**
