@@ -63,9 +63,10 @@ public class BlogController {
     tags.add("mongodb");
     blogPost.setTags(tags);
     blogPost.setContent(
-        "I start this blog to have a location where I can post things that I learn, . That may help "
-            + "other people or at least myself. I think it will be about programming and IT most of "
-            + "the time but maybe a bit about electronics.");
+        "My intention for this blog at the moment is to have a location where I"
+            + "can post things that I learn and that may help other"
+            + " people. I think it will be about programming and IT most of "
+            + "the time but maybe also a bit about electronics, bicycles, politics.");
     postRepository.save(blogPost);
   }
 
