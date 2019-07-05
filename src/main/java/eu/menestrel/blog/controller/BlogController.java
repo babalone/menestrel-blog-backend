@@ -2,6 +2,7 @@ package eu.menestrel.blog.controller;
 
 import eu.menestrel.blog.model.Author;
 import eu.menestrel.blog.model.BlogPost;
+import eu.menestrel.blog.model.BlogPost.BlogPostBuilder;
 import eu.menestrel.blog.repository.PostRepository;
 import eu.menestrel.blog.service.BlogService;
 import java.time.LocalDateTime;
@@ -37,7 +38,6 @@ public class BlogController {
   @GET
   @Path("/generatePost")
   public void getCreatePosts() {
-    BlogPost blogPost = BlogPost.builder().build();
     List<Pair<String, String>> contactInformations = new ArrayList<>(5);
     contactInformations.add(Pair.of("twitter", "@babalone"));
     contactInformations.add(Pair.of("e-mail", "blog@bazzinga.eu"));
@@ -50,24 +50,31 @@ public class BlogController {
             .contactInformation(contactInformations)
             .build());
 
-    blogPost.setAuthors(authors);
-    blogPost.setTitle("The start");
-    blogPost.setCreatedTime(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
-    blogPost.setUpdateTime(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)));
-    List<String> tags = new ArrayList<>(5);
+    BlogPostBuilder blogPostBuilder = BlogPost.builder();
+    blogPostBuilder
+        .authors(authors)
+        .title("The start")
+        .createdTime(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)))
+        .updateTime(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)))
+        .tags(tagList())
+        .content(
+            "My intention for this blog at the moment is to have a location where I"
+                + "can post things that I learn and that may help other"
+                + " people. I think it will be about programming and IT most of "
+                + "the time but maybe also a bit about electronics, bicycles, politics.");
+    postRepository.save(blogPostBuilder.build());
+  }
+
+  private List<String> tagList() {
+    List<String> tags;
+    tags = new ArrayList<>(5);
     tags.add("blog");
     tags.add("architecture");
     tags.add("java");
     tags.add("react");
     tags.add("spring");
     tags.add("mongodb");
-    blogPost.setTags(tags);
-    blogPost.setContent(
-        "My intention for this blog at the moment is to have a location where I"
-            + "can post things that I learn and that may help other"
-            + " people. I think it will be about programming and IT most of "
-            + "the time but maybe also a bit about electronics, bicycles, politics.");
-    postRepository.save(blogPost);
+    return tags;
   }
 
   @GET
