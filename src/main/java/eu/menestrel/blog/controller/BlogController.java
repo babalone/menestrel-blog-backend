@@ -23,11 +23,15 @@ import javax.ws.rs.Produces;
 @Path("/blog")
 public class BlogController {
 
-  @Autowired
-  private BlogService blogService;
+  private final BlogService blogService;
+
+  private final PostRepository postRepository;
 
   @Autowired
-  private PostRepository postRepository;
+  public BlogController(BlogService blogService, PostRepository postRepository) {
+    this.blogService = blogService;
+    this.postRepository = postRepository;
+  }
 
   @GET
   @Produces("application/json")
@@ -38,16 +42,16 @@ public class BlogController {
   @GET
   @Path("/generatePost")
   public void getCreatePosts() {
-    List<Pair<String, String>> contactInformations = new ArrayList<>(5);
-    contactInformations.add(Pair.of("twitter", "@babalone"));
-    contactInformations.add(Pair.of("e-mail", "blog@bazzinga.eu"));
+    List<Pair<String, String>> contactInformation = new ArrayList<>(5);
+    contactInformation.add(Pair.of("twitter", "@babalone"));
+    contactInformation.add(Pair.of("e-mail", "blog@bazzinga.eu"));
 
     List<Author> authors = new ArrayList<>(1);
     authors.add(
         Author.builder()
             .name(Optional.of("Stephan Spielmann"))
             .publicName("Stephan Spielmann")
-            .contactInformation(contactInformations)
+            .contactInformation(contactInformation)
             .build());
 
     BlogPostBuilder blogPostBuilder = BlogPost.builder();
@@ -79,7 +83,7 @@ public class BlogController {
 
   @GET
   @Path("/deletePosts")
-  public void getDeleteePosts() {
+  public void getDeletePosts() {
     postRepository.deleteAll();
   }
 }

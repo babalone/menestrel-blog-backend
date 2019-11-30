@@ -5,7 +5,7 @@ import eu.menestrel.blog.model.BlogPost;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PostRepository extends MongoRepository<BlogPost, String> {
-  public BlogPost findByTitle(String id);
-  public BlogPost findByAuthors(Author author);
-  public BlogPost findByTags(String tag);
+  BlogPost findByTitle(String id);
+  BlogPost findByAuthors(Author author);
+  BlogPost findByTags(String tag);
 }

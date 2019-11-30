@@ -1,12 +1,9 @@
 package eu.menestrel.blog.model;
 
 import java.util.Date;
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
-
-import java.time.ZonedDateTime;
-import java.util.List;
-import lombok.NoArgsConstructor;
 
 /**
  * Data object representing a blog post.
