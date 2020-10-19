@@ -39,8 +39,9 @@ public class BlogController {
     return blogService.getAllPosts();
   }
 
-  @GET
-  @Path("/generatePost")
+  // TODO: remove this as it is only for testing purpose and POC for creating posts (maybe use for testing but at the moment used for POC)
+  @GET // wrong type and everything; this is more like a RPC than REST
+  @Path("/blogpost/$title")
   public void getCreatePosts() {
     List<Pair<String, String>> contactInformation = new ArrayList<>(5);
     contactInformation.add(Pair.of("twitter", "@babalone"));
@@ -81,7 +82,8 @@ public class BlogController {
     return tags;
   }
 
-  @GET
+  // TODO: remove this as it is only for testing purpose and having a POC to delete posts; or at least require auth for it
+  @GET // wrong type and everything; this is more like a RPC than REST
   @Path("/deletePosts")
   public void getDeletePosts() {
     postRepository.deleteAll();
